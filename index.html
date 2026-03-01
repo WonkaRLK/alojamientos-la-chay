@@ -50,7 +50,7 @@
     /* ========== INTRO WRAPPER (loader + landing) ========== */
     #intro-wrapper {
       position: fixed; inset: 0; z-index: 9999;
-      height: 200vh;
+      height: 200vh; overflow: hidden;
       background: linear-gradient(rgba(8,28,21,0.92), rgba(8,28,21,0.92)), url('img/bg-leaves.jpg') center/cover fixed, var(--green-900);
       transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -201,19 +201,27 @@
     }
 
     @media (max-width: 768px) {
+      #property-landing {
+        height: auto; min-height: 100vh;
+        padding: 2rem 0;
+        overflow-y: auto;
+      }
       .landing-cards {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
-        padding: 0 1.5rem;
+        gap: 0.8rem;
+        padding: 0 1.2rem;
       }
       .landing-card {
         max-width: 100%; width: 100%;
-        height: 200px;
+        height: 150px;
       }
-      .landing-card-content { padding: 1rem; }
-      .landing-card-name { font-size: 1.2rem; }
-      .landing-card-desc { font-size: 0.8rem; }
+      .landing-card-content { padding: 0.8rem; }
+      .landing-card-name { font-size: 1.1rem; }
+      .landing-card-desc { font-size: 0.75rem; }
+      .landing-card-badge { font-size: 0.65rem; }
+      .landing-title { font-size: 1.5rem; }
+      .landing-subtitle { font-size: 0.7rem; margin-top: -1rem; }
     }
 
     /* ========== NAVBAR ========== */
