@@ -50,15 +50,15 @@
     /* ========== INTRO WRAPPER (loader + landing) ========== */
     #intro-wrapper {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
-      height: 200vh; overflow: hidden;
+      height: 200vh; height: 200dvh; overflow: hidden;
       background: linear-gradient(rgba(8,28,21,0.92), rgba(8,28,21,0.92)), url('img/bg-leaves.jpg') center/cover fixed, var(--green-900);
       transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    #intro-wrapper.slide-up { transform: translateY(-100vh); }
+    #intro-wrapper.slide-up { transform: translateY(-100vh); transform: translateY(-100dvh); }
     #intro-wrapper.done { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease, visibility 0.4s ease; }
 
     #loader {
-      height: 100vh; width: 100%;
+      height: 100vh; height: 100dvh; width: 100%;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       gap: 2rem;
@@ -103,7 +103,7 @@
 
     /* ========== PROPERTY LANDING ========== */
     #property-landing {
-      height: 100vh; width: 100%;
+      height: 100vh; height: 100dvh; width: 100%;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       gap: 2.5rem;
@@ -233,7 +233,7 @@
     }
     #navbar.scrolled {
       background: rgba(8, 28, 21, 0.92);
-      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
       padding: 0.7rem 2rem;
     }
     .nav-logo {
@@ -323,7 +323,7 @@
       text-transform: uppercase; letter-spacing: 0.2em;
       color: var(--green-300); opacity: 0;
       background: rgba(8, 28, 21, 0.6);
-      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
       border: 1px solid rgba(82, 183, 136, 0.4);
       padding: 0.5rem 1.5rem; border-radius: 50px;
       margin-bottom: 0.5rem;
@@ -676,7 +676,7 @@
     .property-selector {
       position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
       z-index: 999; display: flex; gap: 0.5rem;
-      background: rgba(8,28,21,0.92); backdrop-filter: blur(12px);
+      background: rgba(8,28,21,0.92); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
       padding: 0.5rem 1rem; border-radius: 50px;
       border: 1px solid rgba(255,255,255,0.1);
       opacity: 0; pointer-events: none;
@@ -744,7 +744,7 @@
     #lightbox {
       position: fixed; inset: 0; z-index: 10000;
       background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; visibility: hidden;
       transition: opacity 0.35s ease, visibility 0.35s ease;
@@ -846,7 +846,7 @@
       .nav-links.open {
         display: flex; flex-direction: column;
         position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(8,28,21,0.97); backdrop-filter: blur(12px);
+        background: rgba(8,28,21,0.97); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
         padding: 1.5rem 2rem; gap: 1.2rem;
       }
       #progress-dots { display: none; }
@@ -1230,6 +1230,7 @@
       gsap.killTweensOf('*');
       ScrollTrigger.getAll().forEach(st => st.kill());
       animationsInitialized = false;
+      currentProperty = '__none__';
 
       // Scroll to top instantly
       document.documentElement.style.cssText += 'scroll-behavior: auto !important;';
