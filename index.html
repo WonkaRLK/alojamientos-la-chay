@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alojamientos La Chay — Alquiler Temporario en Concepción del Uruguay</title>
+  <meta name="description" content="Casa Quinta La Chay — Alquiler temporario con piscina privada, parrilla y amplio parque verde en Concepción del Uruguay, Entre Ríos.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========== CUSTOM PROPERTIES ========== */
+    :root {
+      --green-900: #081c15;
+      --green-800: #1b4332;
+      --green-700: #1a4d2e;
+      --green-600: #2d6a4f;
+      --green-500: #40916c;
+      --green-400: #52b788;
+      --green-300: #74c69d;
+      --green-200: #95d5b2;
+      --green-100: #b7e4c7;
+      --green-50: #d8f3dc;
+      --gold: #d4a373;
+      --gold-light: #e9c46a;
+      --warm-dark: #2b2118;
+      --blue-pool: #0ea5e9;
+      --blue-dark: #0c4a6e;
+      --white: #fefefe;
+      --black: #0a0a0a;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--green-900);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ========== LOADING SCREEN ========== */
+    /* ========== INTRO WRAPPER (loader + landing) ========== */
+    #intro-wrapper {
+      position: fixed; inset: 0; z-index: 9999;
+      height: 200vh;
+      background: linear-gradient(rgba(8,28,21,0.92), rgba(8,28,21,0.92)), url('img/bg-leaves.jpg') center/cover fixed, var(--green-900);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #intro-wrapper.slide-up { transform: translateY(-100vh); }
+    #intro-wrapper.done { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease, visibility 0.4s ease; }
+
+    #loader {
+      height: 100vh; width: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2rem;
+    }
+    #loader h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--green-400);
+      letter-spacing: 0.05em;
+      animation: loaderPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes loaderPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.04); }
+    }
+    .loader-bar {
+      width: 200px; height: 2px; background: rgba(255,255,255,0.1);
+      border-radius: 2px; overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%; width: 0%; background: var(--green-400);
+      animation: loaderFill 1s ease-in-out forwards;
+    }
+    @keyframes loaderFill {
+      0% { width: 0%; }
+      40% { width: 55%; }
+      70% { width: 80%; }
+      100% { width: 100%; }
+    }
+    .loader-hint {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      animation: loaderFade 2s ease-in-out infinite;
+    }
+    @keyframes loaderFade {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* ========== PROPERTY LANDING ========== */
+    #property-landing {
+      height: 100vh; width: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2.5rem;
+    }
+    #intro-wrapper:not(.done) ~ #navbar,
+    #intro-wrapper:not(.done) ~ #progress-dots,
+    #intro-wrapper:not(.done) ~ #property-selector { opacity: 0 !important; pointer-events: none !important; }
+
+    .landing-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      color: var(--green-300);
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+    .landing-subtitle {
+      font-family: var(--font-body);
+      font-size: clamp(0.8rem, 1.5vw, 1rem);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      margin-top: -1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .landing-cards {
+      display: flex; gap: 1.5rem;
+      padding: 0 2rem;
+      max-width: 1100px; width: 100%;
+      justify-content: center;
+    }
+
+    .landing-card {
+      position: relative;
+      flex: 1; max-width: 320px;
+      height: 360px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      background: transparent;
+      padding: 0;
+      font-family: inherit;
+      color: inherit;
+    }
+
+    .landing-card:hover {
+      border-color: var(--green-400);
+      box-shadow: 0 0 30px rgba(82,183,136,0.15), 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .landing-card-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .landing-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,28,21,0.92) 0%, rgba(8,28,21,0.4) 50%, rgba(8,28,21,0.2) 100%);
+    }
+    .landing-card:hover .landing-card-overlay {
+      background: linear-gradient(to top, rgba(8,28,21,0.85) 0%, rgba(8,28,21,0.25) 50%, rgba(8,28,21,0.1) 100%);
+    }
+
+    .landing-card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;
+    }
+    .landing-card-name {
+      font-family: var(--font-heading);
+      font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .landing-card-desc {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+    }
+    .landing-card-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      margin-top: 0.3rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      border: 1px solid rgba(82,183,136,0.3);
+      background: rgba(82,183,136,0.1);
+      font-size: 0.72rem;
+      color: var(--green-300);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      width: fit-content;
+    }
+
+    @media (max-width: 768px) {
+      .landing-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 1.5rem;
+      }
+      .landing-card {
+        max-width: 100%; width: 100%;
+        height: 200px;
+      }
+      .landing-card-content { padding: 1rem; }
+      .landing-card-name { font-size: 1.2rem; }
+      .landing-card-desc { font-size: 0.8rem; }
+    }
+
+    /* ========== NAVBAR ========== */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(8, 28, 21, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 0.7rem 2rem;
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--green-400);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: -4px; left: 0; width: 0; height: 2px;
+      background: var(--green-400);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* ========== PROGRESS DOTS ========== */
+    #progress-dots {
+      position: fixed; right: 1.5rem; top: 50%;
+      transform: translateY(-50%); z-index: 999;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .progress-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      background: transparent; cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .progress-dot.active {
+      background: var(--green-400);
+      border-color: var(--green-400);
+      transform: scale(1.3);
+    }
+    .progress-dot:hover { border-color: var(--white); }
+
+    /* ========== CANVAS PARTICLES ========== */
+    #particles-canvas {
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ========== SECTIONS COMMON ========== */
+    .scene {
+      position: relative; width: 100%;
+      min-height: 100vh;
+    }
+    .scene-content {
+      position: relative; z-index: 3;
+      width: 100%; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 5rem 2rem;
+    }
+    .scene-bg {
+      position: absolute; inset: 0; z-index: 1;
+      transition: background 0.1s linear;
+    }
+    .scene-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: rgba(0,0,0,0.3);
+    }
+
+    /* ========== SCENE 1: HERO ========== */
+    #hero { background: linear-gradient(180deg, var(--green-900) 0%, var(--green-800) 60%, var(--green-900) 100%); }
+    #hero .scene-content {
+      flex-direction: column; text-align: center; gap: 1.2rem;
+    }
+    .hero-badge {
+      font-family: var(--font-body);
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: var(--green-300); opacity: 0;
+      background: rgba(8, 28, 21, 0.6);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(82, 183, 136, 0.4);
+      padding: 0.5rem 1.5rem; border-radius: 50px;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900; line-height: 1;
+      color: var(--white); opacity: 0;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+    .hero-title em {
+      font-style: italic; color: var(--green-400);
+      display: block; font-size: 0.5em;
+      margin-top: 0.4em;
+      text-shadow: 0 2px 20px rgba(82,183,136,0.3);
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 300; color: rgba(255,255,255,0.8);
+      max-width: 500px; line-height: 1.6; opacity: 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      margin-top: 0.5rem;
+    }
+    .hero-image-container {
+      position: absolute; inset: 0; z-index: 0;
+      overflow: hidden;
+    }
+    .hero-image-container img {
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transform: scale(1.2);
+    }
+    .hero-image-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(8,28,21,0.6) 0%,
+        rgba(8,28,21,0.35) 35%,
+        rgba(8,28,21,0.3) 50%,
+        rgba(8,28,21,0.75) 100%
+      );
+    }
+    .scroll-indicator {
+      position: absolute; bottom: 3rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.5rem; opacity: 0;
+    }
+    /* Fallback: si GSAP no arranca, mostrar el hero igual */
+    @keyframes heroFallback {
+      to { opacity: 1; transform: none; }
+    }
+    .hero-badge, .hero-title, .hero-subtitle, .scroll-indicator {
+      animation: heroFallback 0s ease 3.5s forwards;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.15em; color: rgba(255,255,255,0.5);
+    }
+    .scroll-arrow {
+      width: 20px; height: 20px;
+      border-right: 2px solid var(--green-400);
+      border-bottom: 2px solid var(--green-400);
+      transform: rotate(45deg);
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); opacity: 1; }
+      50% { transform: rotate(45deg) translateY(8px); opacity: 0.4; }
+    }
+
+    /* ========== SCENE 2: PISCINA ========== */
+    #piscina { background: linear-gradient(180deg, var(--green-900) 0%, var(--green-900) 50%, var(--green-800) 100%); }
+    .piscina-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; max-width: 1200px; width: 100%;
+      align-items: center;
+    }
+    .piscina-text { opacity: 0; }
+    .piscina-text h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .piscina-text h2 span { color: var(--blue-pool); }
+    .piscina-text p {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(255,255,255,0.75); max-width: 450px;
+    }
+    .piscina-images {
+      position: relative; height: 500px;
+    }
+    .piscina-img {
+      position: absolute; border-radius: 12px;
+      overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      opacity: 0;
+    }
+    .piscina-img img { width: 100%; height: 100%; object-fit: cover; }
+    .piscina-img-1 {
+      width: 85%; height: 70%; top: 0; right: 0;
+    }
+    .piscina-img-2 {
+      width: 55%; height: 50%; bottom: 0; left: 0;
+      border: 3px solid rgba(255,255,255,0.1);
+    }
+
+    /* ========== SCENE 3: ESPACIOS VERDES ========== */
+    #espacios { background: linear-gradient(180deg, var(--green-800) 0%, var(--green-800) 50%, var(--warm-dark) 100%); }
+    .espacios-layout {
+      text-align: center; max-width: 1100px; width: 100%;
+      display: flex; flex-direction: column; align-items: center; gap: 2.5rem;
+    }
+    .espacios-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900; opacity: 0;
+    }
+    .espacios-title span { color: var(--green-300); }
+    .espacios-desc {
+      font-size: 1.1rem; line-height: 1.8; max-width: 600px;
+      color: rgba(255,255,255,0.75); opacity: 0;
+    }
+    .espacios-img-wrapper {
+      width: 90%; max-width: 900px; border-radius: 16px;
+      overflow: hidden; opacity: 0;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      background: var(--green-800);
+    }
+    .espacios-img-wrapper img { width: 100%; height: 400px; object-fit: cover; }
+    .espacios-features {
+      display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center;
+      margin-top: 1rem;
+    }
+    .feature-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.5rem; opacity: 0;
+    }
+    .feature-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 1.5px solid rgba(116, 198, 157, 0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feature-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--green-300);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .feature-label {
+      font-size: 0.85rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ========== SCENE 4: INTERIOR ========== */
+    #interior { background: linear-gradient(180deg, var(--warm-dark) 0%, var(--warm-dark) 60%, var(--warm-dark) 100%); }
+    .interior-layout {
+      max-width: 1200px; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+    .interior-gallery {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .interior-img {
+      border-radius: 10px; overflow: hidden;
+      opacity: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    .interior-img img { width: 100%; height: 220px; object-fit: cover; }
+    .interior-img:first-child {
+      grid-column: 1 / -1;
+    }
+    .interior-img:first-child img { height: 280px; }
+    .interior-text { opacity: 0; }
+    .interior-text h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem;
+    }
+    .interior-text h2 span { color: var(--gold); }
+    .interior-text p {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;
+    }
+    .interior-list {
+      list-style: none; display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .interior-list li {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.95rem; color: rgba(255,255,255,0.8);
+    }
+    .interior-list li::before {
+      content: ''; width: 8px; height: 8px;
+      background: var(--green-400); border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ========== SCENE 5: DORMITORIOS ========== */
+    #dormitorios { background: linear-gradient(180deg, var(--warm-dark) 0%, var(--green-900) 60%, var(--green-900) 100%); }
+    .dorm-layout {
+      max-width: 1200px; width: 100%;
+      display: flex; flex-direction: column; align-items: center; gap: 3rem;
+    }
+    .dorm-header { text-align: center; opacity: 0; padding-bottom: 1rem; }
+    .dorm-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900; margin-bottom: 1.2rem;
+    }
+    .dorm-header h2 span { color: var(--gold-light); }
+    .dorm-header p {
+      font-size: 1.05rem; color: rgba(255,255,255,0.7);
+      max-width: 500px; margin: 0 auto;
+      line-height: 1.6;
+    }
+    .dorm-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; width: 100%;
+    }
+    .dorm-card {
+      border-radius: 12px; overflow: hidden; opacity: 0;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .dorm-card:hover {
+      box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+    }
+    .dorm-card img { width: 100%; height: 220px; object-fit: cover; }
+    .dorm-card-info {
+      padding: 1.2rem;
+    }
+    .dorm-card-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem; margin-bottom: 0.4rem;
+    }
+    .dorm-card-info p {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5;
+    }
+
+    /* ========== SCENE 6: UBICACIÓN ========== */
+    #ubicacion { background: linear-gradient(180deg, var(--green-900) 0%, var(--green-900) 50%, var(--green-800) 100%); }
+    .ubicacion-layout {
+      max-width: 1200px; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+    .ubicacion-text { opacity: 0; }
+    .ubicacion-text h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900; margin-bottom: 1.5rem;
+    }
+    .ubicacion-text h2 span { color: var(--green-300); }
+    .ubicacion-info {
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .ubicacion-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 0.95rem; color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+    .ubicacion-item .icon {
+      font-size: 1.3rem; flex-shrink: 0; margin-top: 2px;
+    }
+    .map-container {
+      border-radius: 16px; overflow: hidden; opacity: 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,0.1);
+    }
+    .map-container iframe {
+      width: 100%; height: 400px; border: 0;
+    }
+
+    /* ========== SCENE 7: CTA / RESERVAR ========== */
+    #reservar {
+      background: linear-gradient(180deg, var(--green-800) 0%, var(--green-700) 50%, var(--green-600) 100%);
+    }
+    .reservar-layout {
+      text-align: center; max-width: 800px; width: 100%;
+      display: flex; flex-direction: column; align-items: center; gap: 2rem;
+    }
+    .reservar-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900; line-height: 1.05; opacity: 0;
+    }
+    .reservar-title span { color: var(--green-300); }
+    .reservar-desc {
+      font-size: 1.1rem; line-height: 1.8;
+      color: rgba(255,255,255,0.75); max-width: 550px; opacity: 0;
+    }
+    .reservar-details {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      justify-content: center; opacity: 0;
+    }
+    .reservar-detail {
+      display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+    }
+    .reservar-detail .value {
+      font-family: var(--font-heading);
+      font-size: 1.8rem; font-weight: 700; color: var(--green-300);
+    }
+    .reservar-detail .label {
+      font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.6);
+    }
+    .cta-button {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      padding: 1rem 2.5rem; border-radius: 60px;
+      background: var(--green-400); color: var(--green-900);
+      font-family: var(--font-body);
+      font-size: 1rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      border: none; cursor: pointer;
+      transition: all 0.3s ease; opacity: 0;
+    }
+    .cta-button:hover {
+      background: var(--white);
+      transform: scale(1.05);
+      box-shadow: 0 10px 40px rgba(82,183,136,0.4);
+    }
+    .cta-button svg { width: 20px; height: 20px; }
+    .reservar-casas {
+      margin-top: 2rem; opacity: 0;
+    }
+    .reservar-casas p {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .casas-badges {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    }
+    .casa-badge {
+      padding: 0.5rem 1.2rem; border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.85rem; color: rgba(255,255,255,0.6);
+      transition: all 0.3s ease;
+    }
+    .casa-badge:hover, .casa-badge.active {
+      border-color: var(--green-400); color: var(--green-400);
+    }
+
+
+    /* ========== PROPERTY SELECTOR ========== */
+    .property-selector {
+      position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
+      z-index: 999; display: flex; gap: 0.5rem;
+      background: rgba(8,28,21,0.92); backdrop-filter: blur(12px);
+      padding: 0.5rem 1rem; border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+      opacity: 0; pointer-events: none;
+      transition: all 0.3s ease;
+    }
+    .property-selector.visible { opacity: 1; pointer-events: auto; }
+    .property-tab {
+      padding: 0.4rem 1rem; border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-family: var(--font-body);
+      font-size: 0.8rem; font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .property-tab:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.9); }
+    .property-tab.active {
+      border-color: var(--green-400); color: var(--green-400);
+      background: rgba(82,183,136,0.1);
+    }
+
+    /* ========== QUINCHO GALLERY (espacios extra) ========== */
+    .espacios-gallery-extra {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      width: 90%; max-width: 900px;
+    }
+    .espacios-gallery-extra .gallery-img {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      opacity: 0;
+    }
+    .espacios-gallery-extra .gallery-img img {
+      width: 100%; height: 200px; object-fit: cover;
+      cursor: zoom-in;
+      transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    .espacios-gallery-extra .gallery-img:hover img { transform: scale(1.08); }
+
+    @media (max-width: 900px) {
+      .property-selector { top: 52px; }
+      .espacios-gallery-extra { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .property-selector {
+        padding: 0.4rem 0.6rem; gap: 0.3rem;
+      }
+      .property-tab { font-size: 0.7rem; padding: 0.35rem 0.7rem; }
+      .espacios-gallery-extra { grid-template-columns: 1fr; }
+      .espacios-gallery-extra .gallery-img img { height: 220px; }
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--green-900); padding: 2rem;
+      text-align: center; border-top: 1px solid rgba(255,255,255,0.08);
+      position: relative; z-index: 2;
+    }
+    footer p {
+      font-size: 0.8rem; color: rgba(255,255,255,0.4);
+    }
+
+    /* ========== LIGHTBOX ========== */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+      cursor: zoom-out;
+      padding: 2rem;
+    }
+    #lightbox.open { opacity: 1; visibility: visible; }
+    #lightbox img {
+      max-width: 90vw; max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      transform: scale(0.9);
+      transition: transform 0.35s ease;
+    }
+    #lightbox.open img { transform: scale(1); }
+    #lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      color: var(--white); font-size: 1.3rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #lightbox-close:hover { background: rgba(255,255,255,0.2); }
+    /* Make clickable images show pointer */
+    .piscina-img img,
+    .espacios-img-wrapper img,
+    .interior-img img,
+    .dorm-card img {
+      cursor: zoom-in;
+    }
+
+    /* ========== ENHANCED ANIMATIONS ========== */
+    .split-word {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      padding-bottom: 0.08em;
+    }
+    .split-word > span {
+      display: inline-block;
+      will-change: transform;
+    }
+    .cta-button {
+      position: relative;
+      overflow: hidden;
+    }
+    .piscina-img img,
+    .espacios-img-wrapper img,
+    .interior-img img,
+    .dorm-card img {
+      transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    .piscina-img:hover img,
+    .espacios-img-wrapper:hover img,
+    .interior-img:hover img,
+    .dorm-card:hover img {
+      transform: scale(1.08);
+    }
+    .feature-icon {
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.4s ease;
+    }
+    .feature-item:hover .feature-icon {
+      transform: scale(1.15) translateY(-4px);
+      border-color: var(--green-300);
+      background: rgba(82, 183, 136, 0.1);
+    }
+    .cta-button::before {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    }
+    .cta-button:hover::before {
+      animation: ctaShine 0.6s ease forwards;
+    }
+    @keyframes ctaShine {
+      to { left: 100%; }
+    }
+    @media (hover: hover) {
+      .dorm-card { transform-style: preserve-3d; }
+    }
+    .nav-logo {
+      transition: letter-spacing 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    .nav-logo:hover {
+      letter-spacing: 0.08em;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(8,28,21,0.97); backdrop-filter: blur(12px);
+        padding: 1.5rem 2rem; gap: 1.2rem;
+      }
+      #progress-dots { display: none; }
+      .piscina-layout,
+      .interior-layout,
+      .ubicacion-layout {
+        grid-template-columns: 1fr;
+      }
+      .piscina-images { height: 350px; }
+      .interior-gallery { order: -1; }
+      .dorm-grid { grid-template-columns: 1fr; }
+      .map-container iframe { height: 300px; }
+      .hero-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .reservar-details { gap: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .scene-content { padding: 1.5rem; }
+      .piscina-images { height: 280px; }
+      .interior-img img { height: 180px !important; }
+      .interior-img:first-child img { height: 200px !important; }
+      .espacios-img-wrapper img { height: 250px; }
+      .espacios-features { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INTRO: LOADER + PROPERTY LANDING -->
+  <div id="intro-wrapper">
+    <div id="loader">
+      <h2>La Chay</h2>
+      <div class="loader-bar"><div class="loader-bar-fill" id="loader-fill"></div></div>
+      <span class="loader-hint">Preparando tu experiencia</span>
+    </div>
+
+    <div id="property-landing">
+    <h2 class="landing-title">Elegí tu alojamiento</h2>
+    <p class="landing-subtitle">Concepción del Uruguay, Entre Ríos</p>
+    <div class="landing-cards">
+      <button class="landing-card" onclick="selectProperty('quinta')">
+        <img class="landing-card-img" src="img/exterior-1.jpg" alt="Casa Quinta La Chay">
+        <div class="landing-card-overlay"></div>
+        <div class="landing-card-content">
+          <div class="landing-card-name">Casa Quinta</div>
+          <div class="landing-card-desc">Piscina privada, parrilla, parque verde. Alquiler temporario.</div>
+          <div class="landing-card-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/></svg>
+            5-6 personas · 2 habitaciones
+          </div>
+        </div>
+      </button>
+      <button class="landing-card" onclick="selectProperty('quincho')">
+        <img class="landing-card-img" src="img/quincho/quincho-1.jpg" alt="Quincho La Chay">
+        <div class="landing-card-overlay"></div>
+        <div class="landing-card-content">
+          <div class="landing-card-name">Quincho</div>
+          <div class="landing-card-desc">2 piletas, parrilla, cocina, cancha de vóley. Alquiler por día.</div>
+          <div class="landing-card-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            10:00 a 20:00 hs
+          </div>
+        </div>
+      </button>
+      <button class="landing-card" onclick="selectProperty('depto')">
+        <img class="landing-card-img" src="img/depto/depto-1.jpg" alt="Departamento La Chay">
+        <div class="landing-card-overlay"></div>
+        <div class="landing-card-content">
+          <div class="landing-card-name">Departamento</div>
+          <div class="landing-card-desc">2 habitaciones, TV, aire acondicionado, parrilla. Alquiler temporario.</div>
+          <div class="landing-card-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/></svg>
+            6 personas · 2 habitaciones
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+  </div><!-- /intro-wrapper -->
+
+  <!-- CANVAS PARTICLES -->
+  <canvas id="particles-canvas"></canvas>
+
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="javascript:void(0)" class="nav-logo" onclick="goToLanding()">Alojamientos La Chay</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero" data-section="0">Inicio</a></li>
+      <li><a href="#piscina" data-section="1">Piscina</a></li>
+      <li><a href="#espacios" data-section="2">Espacios</a></li>
+      <li><a href="#interior" data-section="3">Interior</a></li>
+      <li><a href="#dormitorios" data-section="4">Dormitorios</a></li>
+      <li><a href="#ubicacion" data-section="5">Ubicación</a></li>
+      <li><a href="#reservar" data-section="6">Reservar</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PROPERTY SELECTOR (floating tabs) -->
+  <div class="property-selector" id="property-selector">
+    <button class="property-tab active" data-property="quinta" onclick="switchProperty('quinta')">Casa Quinta</button>
+    <button class="property-tab" data-property="quincho" onclick="switchProperty('quincho')">Quincho</button>
+    <button class="property-tab" data-property="depto" onclick="switchProperty('depto')">Departamento</button>
+  </div>
+
+  <!-- PROGRESS DOTS -->
+  <div id="progress-dots">
+    <div class="progress-dot active" data-section="0" title="Inicio"></div>
+    <div class="progress-dot" data-section="1" title="Piscina"></div>
+    <div class="progress-dot" data-section="2" title="Espacios"></div>
+    <div class="progress-dot" data-section="3" title="Interior"></div>
+    <div class="progress-dot" data-section="4" title="Dormitorios"></div>
+    <div class="progress-dot" data-section="5" title="Ubicación"></div>
+    <div class="progress-dot" data-section="6" title="Reservar"></div>
+  </div>
+
+  <!-- ==================== SCENE 1: HERO ==================== -->
+  <section id="hero" class="scene">
+    <div class="hero-image-container">
+      <img src="img/exterior-1.jpg" alt="Casa Quinta La Chay — Vista exterior con piscina y parque verde" loading="eager">
+      <div class="hero-image-overlay"></div>
+    </div>
+    <div class="scene-content">
+      <span class="hero-badge">Concepción del Uruguay, Entre Ríos</span>
+      <h1 class="hero-title">
+        <span class="split-word"><span>Casa</span></span> <span class="split-word"><span>Quinta</span></span>
+        <em><span class="split-word"><span>La</span></span> <span class="split-word"><span>Chay</span></span></em>
+      </h1>
+      <p class="hero-subtitle">Tu escape perfecto. Piscina privada, parrilla, amplios espacios verdes y la tranquilidad de la naturaleza entrerriana.</p>
+    </div>
+    <div class="scroll-indicator">
+      <span>Descubrí más</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ==================== SCENE 2: PISCINA ==================== -->
+  <section id="piscina" class="scene">
+    <div class="scene-content">
+      <div class="piscina-layout">
+        <div class="piscina-text">
+          <h2>Piscina <span>Privada</span></h2>
+          <p>Disfrutá de tu propia pileta con agua cristalina, rodeada de vegetación y con total privacidad. El lugar ideal para refrescarte y relajarte bajo el sol entrerriano.</p>
+        </div>
+        <div class="piscina-images">
+          <div class="piscina-img piscina-img-1">
+            <img src="img/pileta-1.jpg" alt="Piscina de agua cristalina" loading="lazy">
+          </div>
+          <div class="piscina-img piscina-img-2">
+            <img src="img/pileta-2.jpg" alt="Piscina con palmera" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCENE 3: ESPACIOS VERDES ==================== -->
+  <section id="espacios" class="scene">
+    <div class="scene-content">
+      <div class="espacios-layout">
+        <h2 class="espacios-title">Naturaleza & <span>Tranquilidad</span></h2>
+        <p class="espacios-desc">Amplio parque verde con árboles, media sombra y todo el espacio que necesitás para desconectar. Ubicada en la entrada a la ciudad, en una zona súper tranquila.</p>
+        <div class="espacios-img-wrapper">
+          <img src="img/jardin-1.jpg" alt="Amplio jardín con media sombra y árboles" loading="lazy">
+        </div>
+        <div class="espacios-gallery-extra" id="espacios-gallery-extra" style="display: none;">
+          <div class="gallery-img"><img src="img/quincho/quincho-5.jpg" alt="Quincho parrilla" loading="lazy"></div>
+          <div class="gallery-img"><img src="img/quincho/quincho-6.jpg" alt="Quincho techo de madera" loading="lazy"></div>
+          <div class="gallery-img"><img src="img/quincho/quincho-7.jpg" alt="Quincho interior" loading="lazy"></div>
+        </div>
+        <div class="espacios-features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22c-4 0-8-2-8-6 0-3 2.5-5.5 4-7l4-5 4 5c1.5 1.5 4 4 4 7 0 4-4 6-8 6z"/><line x1="12" y1="22" x2="12" y2="16"/><path d="M8 18c0-2 1.5-3 2-3.5"/><path d="M16 18c0-2-1.5-3-2-3.5"/></svg>
+            </div>
+            <span class="feature-label">Parque verde</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>
+            </div>
+            <span class="feature-label">Media sombra</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 12c-2-3-4-4.5-4-6.5a4 4 0 0 1 8 0c0 2-2 3.5-4 6.5z"/><rect x="6" y="14" width="12" height="6" rx="1"/><line x1="6" y1="17" x2="18" y2="17"/></svg>
+            </div>
+            <span class="feature-label">Parrilla</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/></svg>
+            </div>
+            <span class="feature-label">Zona tranquila</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCENE 4: INTERIOR ==================== -->
+  <section id="interior" class="scene">
+    <div class="scene-content">
+      <div class="interior-layout">
+        <div class="interior-gallery">
+          <div class="interior-img">
+            <img src="img/living-1.jpg" alt="Living comedor amplio" loading="lazy">
+          </div>
+          <div class="interior-img">
+            <img src="img/living-3.jpg" alt="Comedor con vista al jardín" loading="lazy">
+          </div>
+          <div class="interior-img">
+            <img src="img/cocina-1.jpg" alt="Cocina equipada" loading="lazy">
+          </div>
+        </div>
+        <div class="interior-text">
+          <h2>Espacios <span>Amplios</span></h2>
+          <p>Todo lo que necesitás para sentirte como en casa, con la comodidad y el espacio que merecés para tus vacaciones.</p>
+          <ul class="interior-list">
+            <li>Living-comedor espacioso con TV</li>
+            <li>Cocina completa con heladera, cocina y microondas</li>
+            <li>Aire acondicionado</li>
+            <li>Vista directa al parque y la piscina</li>
+            <li>Baño completo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCENE 5: DORMITORIOS ==================== -->
+  <section id="dormitorios" class="scene">
+    <div class="scene-content">
+      <div class="dorm-layout">
+        <div class="dorm-header">
+          <h2>Descanso & <span>Confort</span></h2>
+          <p>2 habitaciones equipadas para que toda la familia descanse cómoda. Capacidad para 5 a 6 personas.</p>
+        </div>
+        <div class="dorm-grid">
+          <div class="dorm-card">
+            <img src="img/dorm-1.jpg" alt="Dormitorio principal con cama matrimonial" loading="lazy">
+            <div class="dorm-card-info">
+              <h3>Dormitorio Principal</h3>
+              <p>Cama matrimonial + cama individual. Amplio, con ventilación natural y aire acondicionado.</p>
+            </div>
+          </div>
+          <div class="dorm-card">
+            <img src="img/dorm-3.jpg" alt="Habitación con cuchetas" loading="lazy">
+            <div class="dorm-card-info">
+              <h3>Habitación Secundaria</h3>
+              <p>Cuchetas ideales para los más chicos. Con ventilador y vista al jardín.</p>
+            </div>
+          </div>
+          <div class="dorm-card">
+            <img src="img/cocina-2.jpg" alt="Cocina y baño" loading="lazy">
+            <div class="dorm-card-info">
+              <h3>Cocina & Baño</h3>
+              <p>Cocina completamente equipada con mesada, horno, microondas y heladera. Baño con ducha.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCENE 6: UBICACIÓN ==================== -->
+  <section id="ubicacion" class="scene">
+    <div class="scene-content">
+      <div class="ubicacion-layout">
+        <div class="ubicacion-text">
+          <h2>Cómo <span>Llegar</span></h2>
+          <div class="ubicacion-info">
+            <div class="ubicacion-item">
+              <span class="icon">&#128205;</span>
+              <span>Calle Principal 1 9000, E3260<br>Concepción del Uruguay, Entre Ríos</span>
+            </div>
+            <div class="ubicacion-item">
+              <span class="icon">&#128663;</span>
+              <span>En la entrada a la ciudad, acceso rápido desde la ruta. Zona muy tranquila y segura.</span>
+            </div>
+            <div class="ubicacion-item">
+              <span class="icon">&#127958;&#65039;</span>
+              <span>A minutos del centro, playas del río Uruguay y todos los servicios.</span>
+            </div>
+          </div>
+        </div>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1500!2d-58.31721454991346!3d-32.49420780823665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1zMzLCsDI5JzM5LjIiUyA1OMKwMTknMDIuMCJX!5e0!3m2!1ses-419!2sar!4v1"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Casa Quinta La Chay">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCENE 7: CTA / RESERVAR ==================== -->
+  <section id="reservar" class="scene">
+    <div class="scene-content">
+      <div class="reservar-layout">
+        <h2 class="reservar-title">Reservá tu <span>escapada</span></h2>
+        <p class="reservar-desc">Escapate a la tranquilidad de Entre Ríos. Piscina privada, parrilla, amplios espacios verdes y todo el confort para vos y tu familia.</p>
+        <div class="reservar-details">
+          <div class="reservar-detail">
+            <span class="value">5-6</span>
+            <span class="label">Personas</span>
+          </div>
+          <div class="reservar-detail">
+            <span class="value">14:00</span>
+            <span class="label">Check-in</span>
+          </div>
+          <div class="reservar-detail">
+            <span class="value">10:00</span>
+            <span class="label">Check-out</span>
+          </div>
+          <div class="reservar-detail">
+            <span class="value">2</span>
+            <span class="label">Habitaciones</span>
+          </div>
+        </div>
+        <a href="https://wa.me/5493442609246" target="_blank" class="cta-button" id="cta-whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar por WhatsApp
+        </a>
+        <div class="reservar-casas">
+          <p>Nuestras propiedades</p>
+          <div class="casas-badges">
+            <span class="casa-badge active" data-property="quinta" onclick="switchProperty('quinta')">Casa Quinta La Chay</span>
+            <span class="casa-badge" data-property="quincho" onclick="switchProperty('quincho')">Quincho La Chay</span>
+            <span class="casa-badge" data-property="depto" onclick="switchProperty('depto')">Departamento La Chay</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button id="lightbox-close">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Alojamientos La Chay — Concepción del Uruguay, Entre Ríos</p>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    // ==================== LOADER ====================
+    const introWrapper = document.getElementById('intro-wrapper');
+    const loader = document.getElementById('loader');
+    const loaderFill = document.getElementById('loader-fill');
+    let loadProgress = 0;
+    let loaderDone = false;
+
+    function showPropertyLanding() {
+      if (loaderDone) return;
+      loaderDone = true;
+      introWrapper.classList.add('slide-up');
+    }
+
+    function goToLanding() {
+      // Kill animations and show property landing again
+      gsap.killTweensOf('*');
+      ScrollTrigger.getAll().forEach(st => st.kill());
+      animationsInitialized = false;
+
+      // Scroll to top instantly
+      document.documentElement.style.cssText += 'scroll-behavior: auto !important;';
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      setTimeout(() => document.documentElement.style.removeProperty('scroll-behavior'), 20);
+
+      // Hide property selector
+      document.getElementById('property-selector').classList.remove('visible');
+
+      // Show intro wrapper at landing position
+      introWrapper.classList.remove('done');
+      introWrapper.classList.add('slide-up');
+    }
+
+    let selectTimeout = null;
+
+    function selectProperty(key) {
+      introWrapper.classList.add('done');
+      if (selectTimeout) clearTimeout(selectTimeout);
+      selectTimeout = setTimeout(() => {
+        selectTimeout = null;
+        currentProperty = '__none__';
+        switchProperty(key);
+      }, 400);
+    }
+
+    const images = document.querySelectorAll('img');
+    let loaded = 0;
+    const totalImages = images.length;
+
+    function updateLoader() {
+      loaded++;
+      loadProgress = Math.round((loaded / totalImages) * 100);
+      loaderFill.style.width = loadProgress + '%';
+      if (loaded >= totalImages) {
+        setTimeout(showPropertyLanding, 250);
+      }
+    }
+
+    images.forEach(img => {
+      if (img.complete) { updateLoader(); }
+      else {
+        img.addEventListener('load', updateLoader);
+        img.addEventListener('error', updateLoader);
+      }
+    });
+
+    // Fallback — hide loader after 1.2s max
+    setTimeout(() => {
+      if (!loaderDone) {
+        showPropertyLanding();
+      }
+    }, 1200);
+
+    // ==================== NAVBAR ====================
+    const navbar = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // Scroll speed for reactive particles
+    let scrollSpeed = 0;
+    let lastScrollY = window.scrollY;
+
+    // Mouse tracking for particle interaction
+    let mouseCanvasX = -500, mouseCanvasY = -500;
+    let isMouseOnPage = false;
+
+    // ==================== PARTICLES CANVAS ====================
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let particleColor = { r: 82, g: 183, b: 136 }; // green-400
+    let animationId;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor(temp) {
+        this.temp = temp || false;
+        this.dead = false;
+        this.nearMouse = 0;
+        if (!this.temp) this.reset();
+      }
+      reset() {
+        if (this.temp) { this.dead = true; return; }
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.3 - 0.2;
+        this.opacity = Math.random() * 0.4 + 0.1;
+        this.life = Math.random() * 200 + 100;
+        this.maxLife = this.life;
+      }
+      update() {
+        // Mouse repulsion + glow proximity
+        if (isMouseOnPage) {
+          const dx = this.x - mouseCanvasX;
+          const dy = this.y - mouseCanvasY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 160) {
+            const force = (160 - dist) / 160;
+            const angle = Math.atan2(dy, dx);
+            this.x += Math.cos(angle) * force * 2.5;
+            this.y += Math.sin(angle) * force * 2.5;
+            this.nearMouse = force;
+          } else {
+            this.nearMouse *= 0.92;
+          }
+        } else {
+          this.nearMouse *= 0.92;
+        }
+        this.x += this.speedX + (this.speedX > 0 ? 1 : -1) * scrollSpeed * 0.04;
+        this.y += this.speedY - scrollSpeed * 0.08;
+        this.life--;
+        if (this.life <= 0 || this.x < -10 || this.x > canvas.width + 10 || this.y < -10 || this.y > canvas.height + 10) {
+          this.reset();
+        }
+      }
+      draw() {
+        if (this.dead) return;
+        const fadeRatio = this.life / this.maxLife;
+        const boost = this.nearMouse * 0.5;
+        const alpha = Math.min(this.opacity * fadeRatio + boost, 1);
+        const size = this.size + this.nearMouse * 3;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${particleColor.r},${particleColor.g},${particleColor.b},${alpha})`;
+        ctx.fill();
+        // Glow — bigger near mouse
+        const glowMult = this.nearMouse > 0.1 ? 4 : 2.5;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, size * glowMult, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${particleColor.r},${particleColor.g},${particleColor.b},${alpha * 0.2})`;
+        ctx.fill();
+      }
+    }
+
+    function initParticles(count = 50) {
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Radial glow under mouse
+      if (isMouseOnPage) {
+        const grd = ctx.createRadialGradient(mouseCanvasX, mouseCanvasY, 0, mouseCanvasX, mouseCanvasY, 180);
+        grd.addColorStop(0, `rgba(${particleColor.r},${particleColor.g},${particleColor.b},0.07)`);
+        grd.addColorStop(0.5, `rgba(${particleColor.r},${particleColor.g},${particleColor.b},0.02)`);
+        grd.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(mouseCanvasX, mouseCanvasY, 180, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      // Clean dead temp particles, update & draw
+      particles = particles.filter(p => !p.dead);
+      particles.forEach(p => { p.update(); p.draw(); });
+      animationId = requestAnimationFrame(animateParticles);
+    }
+
+    initParticles(60);
+    animateParticles();
+
+    // ==================== PROGRESS DOTS ====================
+    let dots = document.querySelectorAll('.progress-dot');
+    const sections = document.querySelectorAll('.scene');
+    let navLinksAll = navLinks.querySelectorAll('a');
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.dataset.section);
+        sections[idx].scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    function updateActiveDot(index) {
+      dots = document.querySelectorAll('.progress-dot');
+      navLinksAll = document.querySelectorAll('#nav-links a');
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      navLinksAll.forEach((a, i) => a.classList.toggle('active', i === index));
+    }
+
+    // ==================== GSAP ANIMATIONS ====================
+    let animationsInitialized = false;
+    function initAnimations() {
+      if (animationsInitialized) return;
+      animationsInitialized = true;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Current property data for dynamic sections
+      const prop = properties[currentProperty];
+      const visibleSections = ['hero', ...prop.sections, 'reservar'];
+
+      // --- HERO ENTRANCE (split text) ---
+      document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .scroll-indicator')
+        .forEach(el => el.style.animation = 'none');
+      const heroWords = document.querySelectorAll('.hero-title .split-word > span');
+      gsap.set(heroWords, { yPercent: 120 });
+      gsap.set('.hero-title', { opacity: 1 });
+
+      const heroTl = gsap.timeline({ delay: 0.15 });
+      heroTl
+        .to('#hero .hero-image-container img', { opacity: 0.85, scale: 1, duration: 0.9, ease: 'power3.out' })
+        .fromTo('.hero-badge', { opacity: 0, y: 25, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'back.out(1.7)' }, '-=0.5')
+        .to(heroWords, { yPercent: 0, duration: 0.5, ease: 'power4.out', stagger: 0.04 }, '-=0.25')
+        .fromTo('.hero-subtitle', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.15')
+        .fromTo('.scroll-indicator', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, '-=0.2');
+
+      // --- HERO SCROLL OUT ---
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: '+=60%',
+          scrub: 1,
+          onUpdate: self => { if (self.progress < 0.5) updateActiveDot(0); }
+        }
+      })
+      .to('#hero .hero-image-container img', { scale: 1.3, opacity: 0.2 })
+      .to('.hero-title', { y: -100, opacity: 0 }, 0)
+      .to('.hero-subtitle', { y: -60, opacity: 0 }, 0)
+      .to('.hero-badge', { y: -40, opacity: 0 }, 0)
+      .to('.scroll-indicator', { opacity: 0 }, 0);
+
+      // --- SECTION BACKGROUND COLOR TRANSITIONS ---
+      const bgColors = [
+        'linear-gradient(135deg, #081c15 0%, #1b4332 50%, #1a4d2e 100%)',
+        '#081c15',
+        '#1b4332',
+        '#2b2118',
+        'linear-gradient(180deg, #2b2118 0%, #081c15 100%)',
+        '#081c15',
+        'linear-gradient(135deg, #1b4332 0%, #1a4d2e 50%, #2d6a4f 100%)'
+      ];
+
+      // Particle color changes per section
+      const particleColors = [
+        { r: 82, g: 183, b: 136 },   // green
+        { r: 14, g: 165, b: 233 },   // blue pool
+        { r: 116, g: 198, b: 157 },  // light green
+        { r: 212, g: 163, b: 115 },  // gold
+        { r: 233, g: 196, b: 106 },  // gold light
+        { r: 82, g: 183, b: 136 },   // green
+        { r: 149, g: 213, b: 178 },  // light green
+      ];
+
+      // --- PISCINA (only if property has pool) ---
+      if (prop.sections.includes('piscina')) {
+        const piscinaIdx = visibleSections.indexOf('piscina');
+        ScrollTrigger.create({
+          trigger: '#piscina',
+          start: 'top center',
+          onEnter: () => { updateActiveDot(piscinaIdx); particleColor = particleColors[1]; },
+          onEnterBack: () => { updateActiveDot(piscinaIdx); particleColor = particleColors[1]; },
+          onLeaveBack: () => { updateActiveDot(0); particleColor = particleColors[0]; }
+        });
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: '#piscina',
+            start: 'top 80%',
+            end: 'center center',
+            scrub: 1
+          }
+        })
+        .to('.piscina-text', { opacity: 1, duration: 1 })
+        .from('.piscina-text', { x: -100, ease: 'power3.out' }, '<')
+        .to('.piscina-img-1', { opacity: 1, duration: 1 }, '-=0.5')
+        .from('.piscina-img-1', { x: 120, rotate: 4, ease: 'power3.out' }, '<')
+        .to('.piscina-img-2', { opacity: 1, duration: 0.8 }, '-=0.3')
+        .from('.piscina-img-2', { y: 100, rotate: -3, ease: 'power3.out' }, '<');
+
+        gsap.to('.piscina-img-1', {
+          y: -40,
+          scrollTrigger: { trigger: '#piscina', start: 'top bottom', end: 'bottom top', scrub: 1 }
+        });
+        gsap.to('.piscina-img-2', {
+          y: -70,
+          scrollTrigger: { trigger: '#piscina', start: 'top bottom', end: 'bottom top', scrub: 1 }
+        });
+      }
+
+      // --- ESPACIOS VERDES ---
+      const espaciosIdx = visibleSections.indexOf('espacios');
+      ScrollTrigger.create({
+        trigger: '#espacios',
+        start: 'top center',
+        onEnter: () => { updateActiveDot(espaciosIdx); particleColor = particleColors[2]; },
+        onEnterBack: () => { updateActiveDot(espaciosIdx); particleColor = particleColors[2]; }
+      });
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '#espacios',
+          start: 'top 75%',
+          end: 'center center',
+          scrub: 1
+        }
+      })
+      .to('.espacios-title', { opacity: 1, duration: 0.8 })
+      .from('.espacios-title', { y: 60 }, '<')
+      .to('.espacios-desc', { opacity: 1, duration: 0.8 }, '-=0.4')
+      .from('.espacios-desc', { y: 40 }, '<')
+      .to('.espacios-img-wrapper', { opacity: 1, duration: 1 }, '-=0.3')
+      .from('.espacios-img-wrapper', { scale: 0.85, y: 60 }, '<');
+
+      // Feature items stagger
+      gsap.to('.feature-item', {
+        opacity: 1, y: 0, stagger: 0.15, duration: 0.6,
+        scrollTrigger: { trigger: '.espacios-features', start: 'top 85%' }
+      });
+      gsap.set('.feature-item', { y: 30 });
+
+      // Image parallax
+      gsap.to('.espacios-img-wrapper img', {
+        y: -30, scale: 1.05,
+        scrollTrigger: { trigger: '#espacios', start: 'top bottom', end: 'bottom top', scrub: 1 }
+      });
+
+      // --- INTERIOR & DORMITORIOS (only for quinta) ---
+      if (prop.sections.includes('interior')) {
+        const interiorIdx = visibleSections.indexOf('interior');
+        ScrollTrigger.create({
+          trigger: '#interior',
+          start: 'top center',
+          onEnter: () => { updateActiveDot(interiorIdx); particleColor = particleColors[3]; },
+          onEnterBack: () => { updateActiveDot(interiorIdx); particleColor = particleColors[3]; }
+        });
+
+        gsap.utils.toArray('.interior-img').forEach((img, i) => {
+          gsap.to(img, {
+            opacity: 1, duration: 0.8,
+            delay: i * 0.15,
+            scrollTrigger: { trigger: img, start: 'top 85%' }
+          });
+          gsap.from(img, {
+            clipPath: 'inset(100% 0 0 0)',
+            scrollTrigger: {
+              trigger: img, start: 'top 85%',
+              end: 'top 50%', scrub: 1
+            }
+          });
+        });
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: '.interior-text',
+            start: 'top 75%',
+            end: 'top 40%',
+            scrub: 1
+          }
+        })
+        .to('.interior-text', { opacity: 1 })
+        .from('.interior-text', { x: 80 }, '<');
+
+        gsap.set('.interior-list li', { opacity: 0, x: -30 });
+        gsap.to('.interior-list li', {
+          opacity: 1, x: 0, duration: 0.6, stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.interior-list', start: 'top 82%' }
+        });
+      }
+
+      if (prop.sections.includes('dormitorios')) {
+        const dormIdx = visibleSections.indexOf('dormitorios');
+        ScrollTrigger.create({
+          trigger: '#dormitorios',
+          start: 'top center',
+          onEnter: () => { updateActiveDot(dormIdx); particleColor = particleColors[4]; },
+          onEnterBack: () => { updateActiveDot(dormIdx); particleColor = particleColors[4]; }
+        });
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: '.dorm-header',
+            start: 'top 80%',
+            end: 'top 50%',
+            scrub: 1
+          }
+        })
+        .to('.dorm-header', { opacity: 1 })
+        .from('.dorm-header', { y: 60 }, '<');
+
+        gsap.utils.toArray('.dorm-card').forEach((card, i) => {
+          gsap.to(card, {
+            opacity: 1, y: 0, duration: 0.8,
+            delay: i * 0.2,
+            scrollTrigger: { trigger: card, start: 'top 85%' }
+          });
+          gsap.set(card, { y: 60 });
+        });
+      }
+
+      // --- QUINCHO GALLERY (extra photos in espacios) ---
+      if (prop.espacios.showGallery) {
+        gsap.utils.toArray('.espacios-gallery-extra .gallery-img').forEach((img, i) => {
+          gsap.to(img, {
+            opacity: 1, duration: 0.8,
+            delay: i * 0.15,
+            scrollTrigger: { trigger: img, start: 'top 85%' }
+          });
+          gsap.from(img, { y: 40, scale: 0.95, scrollTrigger: { trigger: img, start: 'top 85%', end: 'top 60%', scrub: 1 } });
+        });
+      }
+
+      // --- UBICACIÓN ---
+      const ubicacionIdx = visibleSections.indexOf('ubicacion');
+      ScrollTrigger.create({
+        trigger: '#ubicacion',
+        start: 'top center',
+        onEnter: () => { updateActiveDot(ubicacionIdx); particleColor = particleColors[5]; },
+        onEnterBack: () => { updateActiveDot(ubicacionIdx); particleColor = particleColors[5]; }
+      });
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '#ubicacion',
+          start: 'top 75%',
+          end: 'center center',
+          scrub: 1
+        }
+      })
+      .to('.ubicacion-text', { opacity: 1 })
+      .from('.ubicacion-text', { x: -60 }, '<')
+      .to('.map-container', { opacity: 1 }, '-=0.3')
+      .from('.map-container', { x: 60, scale: 0.9 }, '<');
+
+      // --- RESERVAR ---
+      const reservarIdx = visibleSections.indexOf('reservar');
+      ScrollTrigger.create({
+        trigger: '#reservar',
+        start: 'top center',
+        onEnter: () => { updateActiveDot(reservarIdx); particleColor = particleColors[6]; },
+        onEnterBack: () => { updateActiveDot(reservarIdx); particleColor = particleColors[6]; }
+      });
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '#reservar',
+          start: 'top 75%',
+          end: 'center center',
+          scrub: 1
+        }
+      })
+      .to('.reservar-title', { opacity: 1 })
+      .from('.reservar-title', { y: 80, scale: 0.9 }, '<')
+      .to('.reservar-desc', { opacity: 1 }, '-=0.3')
+      .from('.reservar-desc', { y: 40 }, '<')
+      .to('.reservar-details', { opacity: 1 }, '-=0.2')
+      .from('.reservar-details', { y: 30 }, '<')
+      .to('.cta-button', { opacity: 1 }, '-=0.2')
+      .from('.cta-button', { y: 20, scale: 0.9 }, '<')
+      .to('.reservar-casas', { opacity: 1 }, '-=0.1')
+      .from('.reservar-casas', { y: 20 }, '<');
+
+      // --- COUNTER ANIMATION ---
+      gsap.utils.toArray('.reservar-detail .value').forEach(el => {
+        const text = el.textContent.trim();
+        const numMatch = text.match(/^(\d+)$/);
+        const rangeMatch = text.match(/^(\d+)-(\d+)$/);
+        const timeMatch = text.match(/^(\d+):(\d+)$/);
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            if (numMatch) {
+              const end = parseInt(numMatch[1]);
+              const obj = { v: 0 };
+              gsap.to(obj, {
+                v: end, duration: 1.8, ease: 'power2.out',
+                onUpdate: () => { el.textContent = Math.round(obj.v); }
+              });
+            } else if (rangeMatch) {
+              const a = parseInt(rangeMatch[1]), b = parseInt(rangeMatch[2]);
+              const obj = { a: 0, b: 0 };
+              gsap.to(obj, {
+                a, b, duration: 1.8, ease: 'power2.out',
+                onUpdate: () => { el.textContent = Math.round(obj.a) + '-' + Math.round(obj.b); }
+              });
+            } else if (timeMatch) {
+              const h = parseInt(timeMatch[1]), m = parseInt(timeMatch[2]);
+              const obj = { h: 0, m: 0 };
+              gsap.to(obj, {
+                h, m, duration: 1.8, ease: 'power2.out',
+                onUpdate: () => {
+                  el.textContent = String(Math.round(obj.h)).padStart(2, '0') + ':' + String(Math.round(obj.m)).padStart(2, '0');
+                }
+              });
+            }
+          }
+        });
+      });
+
+      // --- PARALLAX BACKGROUNDS (subtle) ---
+      sections.forEach(section => {
+        gsap.to(section, {
+          backgroundPositionY: '30%',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1
+          }
+        });
+      });
+
+
+      // Refresh ScrollTrigger after setup
+      ScrollTrigger.refresh();
+    }
+
+    // ==================== LIGHTBOX ====================
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    // All clickable images
+    document.querySelectorAll('.piscina-img img, .espacios-img-wrapper img, .interior-img img, .dorm-card img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+      });
+    });
+
+    // Close lightbox
+    lightboxClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lightbox.classList.remove('open');
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+    });
+    lightboxImg.addEventListener('click', (e) => {
+      e.stopPropagation(); // Don't close when clicking the image itself
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lightbox.classList.remove('open');
+    });
+
+    // ==================== 3D TILT ON DORM CARDS ====================
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('.dorm-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(card, {
+            rotateX: y * -12,
+            rotateY: x * 12,
+            y: -10,
+            duration: 0.4,
+            ease: 'power2.out',
+            transformPerspective: 800,
+            overwrite: 'auto'
+          });
+        });
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            rotateX: 0, rotateY: 0, y: 0,
+            duration: 0.7,
+            ease: 'elastic.out(1, 0.5)',
+            transformPerspective: 800,
+            overwrite: 'auto'
+          });
+        });
+      });
+    }
+
+    // ==================== MAGNETIC CTA BUTTON ====================
+    const ctaBtn = document.getElementById('cta-whatsapp');
+    if (ctaBtn && window.matchMedia('(hover: hover)').matches) {
+      ctaBtn.addEventListener('mousemove', (e) => {
+        const rect = ctaBtn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(ctaBtn, {
+          x: x * 0.3,
+          y: y * 0.3,
+          scale: 1.05,
+          duration: 0.4,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        });
+      });
+      ctaBtn.addEventListener('mouseleave', () => {
+        gsap.to(ctaBtn, {
+          x: 0, y: 0, scale: 1,
+          duration: 0.7,
+          ease: 'elastic.out(1, 0.4)',
+          overwrite: 'auto'
+        });
+      });
+    }
+
+    // ==================== SCROLL-REACTIVE PARTICLES ====================
+    window.addEventListener('scroll', () => {
+      scrollSpeed = Math.min(Math.abs(window.scrollY - lastScrollY), 30);
+      lastScrollY = window.scrollY;
+      setTimeout(() => { scrollSpeed *= 0.8; }, 100);
+    }, { passive: true });
+
+    // ==================== MOUSE-REACTIVE PARTICLES ====================
+    let lastTrailX = 0, lastTrailY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseCanvasX = e.clientX;
+      mouseCanvasY = e.clientY;
+      isMouseOnPage = true;
+      // Spawn trail sparkles on fast movement
+      const dx = e.clientX - lastTrailX;
+      const dy = e.clientY - lastTrailY;
+      if (dx * dx + dy * dy > 500 && particles.length < 180) {
+        const p = new Particle(true);
+        p.x = e.clientX + (Math.random() - 0.5) * 8;
+        p.y = e.clientY + (Math.random() - 0.5) * 8;
+        p.size = Math.random() * 2.5 + 0.8;
+        p.speedX = (Math.random() - 0.5) * 0.8;
+        p.speedY = (Math.random() - 0.5) * 0.8 - 0.4;
+        p.opacity = 0.5 + Math.random() * 0.35;
+        p.life = 25 + Math.random() * 20;
+        p.maxLife = p.life;
+        particles.push(p);
+        lastTrailX = e.clientX;
+        lastTrailY = e.clientY;
+      }
+    });
+
+    document.addEventListener('mouseleave', () => { isMouseOnPage = false; });
+    document.addEventListener('mouseenter', () => { isMouseOnPage = true; });
+
+    // ==================== PROPERTY SYSTEM ====================
+    let currentProperty = 'quinta';
+
+    const properties = {
+      quinta: {
+        heroImage: 'img/exterior-1.jpg',
+        heroTitle: '<span class="split-word"><span>Casa</span></span> <span class="split-word"><span>Quinta</span></span><em><span class="split-word"><span>La</span></span> <span class="split-word"><span>Chay</span></span></em>',
+        heroSubtitle: 'Tu escape perfecto. Piscina privada, parrilla, amplios espacios verdes y la tranquilidad de la naturaleza entrerriana.',
+        heroBadge: 'Concepción del Uruguay, Entre Ríos',
+        sections: ['piscina', 'espacios', 'interior', 'dormitorios', 'ubicacion'],
+        piscina: {
+          title: 'Piscina <span>Privada</span>',
+          text: 'Disfrutá de tu propia pileta con agua cristalina, rodeada de vegetación y con total privacidad. El lugar ideal para refrescarte y relajarte bajo el sol entrerriano.',
+          img1: 'img/pileta-1.jpg',
+          img2: 'img/pileta-2.jpg',
+          alt1: 'Piscina de agua cristalina',
+          alt2: 'Piscina con palmera'
+        },
+        espacios: {
+          title: 'Naturaleza & <span>Tranquilidad</span>',
+          desc: 'Amplio parque verde con árboles, media sombra y todo el espacio que necesitás para desconectar. Ubicada en la entrada a la ciudad, en una zona súper tranquila.',
+          image: 'img/jardin-1.jpg',
+          imageAlt: 'Amplio jardín con media sombra y árboles',
+          features: [
+            { icon: 'tree', label: 'Parque verde' },
+            { icon: 'sun', label: 'Media sombra' },
+            { icon: 'grill', label: 'Parrilla' },
+            { icon: 'house', label: 'Zona tranquila' }
+          ],
+          showGallery: false
+        },
+        interior: {
+          title: 'Espacios <span>Amplios</span>',
+          text: 'Todo lo que necesitás para sentirte como en casa, con la comodidad y el espacio que merecés para tus vacaciones.',
+          images: ['img/living-1.jpg', 'img/living-3.jpg', 'img/cocina-1.jpg'],
+          alts: ['Living comedor amplio', 'Comedor con vista al jardín', 'Cocina equipada'],
+          list: [
+            'Living-comedor espacioso con TV',
+            'Cocina completa con heladera, cocina y microondas',
+            'Aire acondicionado',
+            'Vista directa al parque y la piscina',
+            'Baño completo'
+          ]
+        },
+        dormitorios: {
+          title: 'Descanso & <span>Confort</span>',
+          desc: '2 habitaciones equipadas para que toda la familia descanse cómoda. Capacidad para 5 a 6 personas.',
+          cards: [
+            { img: 'img/dorm-1.jpg', alt: 'Dormitorio principal con cama matrimonial', title: 'Dormitorio Principal', desc: 'Cama matrimonial + cama individual. Amplio, con ventilación natural y aire acondicionado.' },
+            { img: 'img/dorm-3.jpg', alt: 'Habitación con cuchetas', title: 'Habitación Secundaria', desc: 'Cuchetas ideales para los más chicos. Con ventilador y vista al jardín.' },
+            { img: 'img/cocina-2.jpg', alt: 'Cocina y baño', title: 'Cocina & Baño', desc: 'Cocina completamente equipada con mesada, horno, microondas y heladera. Baño con ducha.' }
+          ]
+        },
+        mapIframe: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1500!2d-58.31721454991346!3d-32.49420780823665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1zMzLCsDI5JzM5LjIiUyA1OMKwMTknMDIuMCJX!5e0!3m2!1ses-419!2sar!4v1',
+        ubicacionItems: [
+          { icon: '📍', text: 'Calle Principal 1 9000, E3260<br>Concepción del Uruguay, Entre Ríos' },
+          { icon: '🚗', text: 'En la entrada a la ciudad, acceso rápido desde la ruta. Zona muy tranquila y segura.' },
+          { icon: '🏖️', text: 'A minutos del centro, playas del río Uruguay y todos los servicios.' }
+        ],
+        reservar: {
+          title: 'Reservá tu <span>escapada</span>',
+          desc: 'Escapate a la tranquilidad de Entre Ríos. Piscina privada, parrilla, amplios espacios verdes y todo el confort para vos y tu familia.',
+          details: [
+            { value: '5-6', label: 'Personas' },
+            { value: '14:00', label: 'Check-in' },
+            { value: '10:00', label: 'Check-out' },
+            { value: '2', label: 'Habitaciones' }
+          ]
+        }
+      },
+      quincho: {
+        heroImage: 'img/quincho/quincho-1.jpg',
+        heroTitle: '<span class="split-word"><span>Quincho</span></span><em><span class="split-word"><span>La</span></span> <span class="split-word"><span>Chay</span></span></em>',
+        heroSubtitle: 'El lugar ideal para pasar el día con familia o amigos. 2 piletas, parrilla, cocina, cancha de vóley y mucho más.',
+        heroBadge: 'Concepción del Uruguay, Entre Ríos',
+        sections: ['piscina', 'espacios', 'ubicacion'],
+        piscina: {
+          title: '2 <span>Piscinas</span>',
+          text: 'Dos piletas para disfrutar todo el día: una grande para los más grandes y una más chica ideal para los más peques. Rodeadas de verde y con reposeras.',
+          img1: 'img/quincho/quincho-2.jpg',
+          img2: 'img/quincho/quincho-3.jpg',
+          alt1: 'Dos piscinas del quincho',
+          alt2: 'Vista cancha de vóley y piletas'
+        },
+        espacios: {
+          title: 'Todo para <span>tu Día</span>',
+          desc: 'Vení con familia o amigos y disfrutá de un espacio completo: quincho techado con mesa larga, parrilla, cocina equipada, heladera, Wi-Fi y cancha de vóley.',
+          image: 'img/quincho/quincho-4.jpg',
+          imageAlt: 'Quincho con mesa larga y piletas',
+          features: [
+            { icon: 'grill', label: 'Parrilla' },
+            { icon: 'kitchen', label: 'Cocina' },
+            { icon: 'fridge', label: 'Heladera' },
+            { icon: 'wifi', label: 'Wi-Fi' },
+            { icon: 'volleyball', label: 'Cancha de vóley' }
+          ],
+          showGallery: true
+        },
+        mapIframe: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1500!2d-58.316849!3d-32.494367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1zMzLCsDI5JzM5LjgiUyA1OMKwMTknMDAuNyJX!5e0!3m2!1ses-419!2sar!4v1',
+        ubicacionItems: [
+          { icon: '📍', text: 'Concepción del Uruguay, Entre Ríos' },
+          { icon: '🕐', text: 'Horario: 10:00 a 20:00 hs. Alquiler por día (no pernocte).' },
+          { icon: '🏖️', text: 'Ubicación céntrica, a minutos de todo.' }
+        ],
+        reservar: {
+          title: 'Reservá tu <span>día</span>',
+          desc: 'Vení a pasar el día con tu familia o amigos. 2 piletas, parrilla, cocina, cancha de vóley y todo lo que necesitás para un día perfecto.',
+          details: [
+            { value: '10:00', label: 'Apertura' },
+            { value: '20:00', label: 'Cierre' },
+            { value: '2', label: 'Piletas' }
+          ]
+        }
+      },
+      depto: {
+        heroImage: 'img/depto/depto-1.jpg',
+        heroTitle: '<span class="split-word"><span>Departamento</span></span><em><span class="split-word"><span>La</span></span> <span class="split-word"><span>Chay</span></span></em>',
+        heroSubtitle: 'Tu alojamiento ideal en el centro de Concepción del Uruguay. 2 habitaciones, cocina completa, parrilla y todo el confort.',
+        heroBadge: 'Concepción del Uruguay, Entre Ríos',
+        sections: ['espacios', 'interior', 'dormitorios', 'ubicacion'],
+        piscina: null,
+        espacios: {
+          title: 'Comodidad & <span>Confort</span>',
+          desc: 'Departamento completo con todo lo que necesitás. Cocina equipada, comedor, TV, internet y patio con parrilla para disfrutar en familia.',
+          image: 'img/depto/depto-2.jpg',
+          imageAlt: 'Cocina comedor del departamento',
+          features: [
+            { icon: 'tv', label: 'TV' },
+            { icon: 'wifi', label: 'Internet' },
+            { icon: 'grill', label: 'Parrilla' },
+            { icon: 'ac', label: 'Aire acond.' },
+            { icon: 'kitchen', label: 'Cocina completa' }
+          ],
+          showGallery: false
+        },
+        interior: {
+          title: 'Espacios <span>Cómodos</span>',
+          text: 'Cocina completa con horno, microondas y heladera. Comedor con mesa para toda la familia. Baño completo con ducha.',
+          images: ['img/depto/depto-3.jpg', 'img/depto/depto-4.jpg', 'img/depto/depto-5.jpg'],
+          alts: ['Cocina comedor', 'Dormitorio principal', 'Baño completo'],
+          list: [
+            'Cocina completa con horno y microondas',
+            'Heladera',
+            'Comedor con mesa para 6',
+            'Baño completo con ducha',
+            'TV y conexión a internet'
+          ]
+        },
+        dormitorios: {
+          title: 'Descanso & <span>Comodidad</span>',
+          desc: '2 habitaciones amplias para 6 personas. Una con aire acondicionado y otra con ventilador industrial.',
+          cards: [
+            { img: 'img/depto/depto-6.jpg', alt: 'Dormitorio con cama doble e individual', title: 'Dormitorio Principal', desc: 'Cama matrimonial + cama individual. Ventilador de techo y perchero.' },
+            { img: 'img/depto/depto-7.jpg', alt: 'Habitación con cuchetas', title: 'Habitación Secundaria', desc: 'Cucheta + cama individual. Ideal para los más chicos.' },
+            { img: 'img/depto/depto-9.jpg', alt: 'Patio con parrilla', title: 'Patio & Parrilla', desc: 'Patio propio con parrilla de ladrillos y espacio al aire libre.' }
+          ]
+        },
+        mapIframe: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1500!2d-58.254661!3d-32.495216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1zMzLCsDI5JzQyLjgiUyA1OMKwMTUnMTcuMCJX!5e0!3m2!1ses-419!2sar!4v1',
+        ubicacionItems: [
+          { icon: '📍', text: 'Concepción del Uruguay, Entre Ríos' },
+          { icon: '🏙️', text: 'Ubicación céntrica, cerca de todos los servicios y comercios.' },
+          { icon: '🚗', text: 'Fácil acceso y estacionamiento.' }
+        ],
+        reservar: {
+          title: 'Reservá tu <span>estadía</span>',
+          desc: 'Departamento completo para vos y tu familia. 2 habitaciones, cocina, parrilla y todo el confort en el centro de la ciudad.',
+          details: [
+            { value: '6', label: 'Personas' },
+            { value: '14:00', label: 'Check-in' },
+            { value: '10:00', label: 'Check-out' },
+            { value: '2', label: 'Habitaciones' }
+          ]
+        }
+      }
+    };
+
+    // SVG icons map
+    const featureIcons = {
+      tree: '<svg viewBox="0 0 24 24"><path d="M12 22c-4 0-8-2-8-6 0-3 2.5-5.5 4-7l4-5 4 5c1.5 1.5 4 4 4 7 0 4-4 6-8 6z"/><line x1="12" y1="22" x2="12" y2="16"/><path d="M8 18c0-2 1.5-3 2-3.5"/><path d="M16 18c0-2-1.5-3-2-3.5"/></svg>',
+      sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>',
+      grill: '<svg viewBox="0 0 24 24"><path d="M12 12c-2-3-4-4.5-4-6.5a4 4 0 0 1 8 0c0 2-2 3.5-4 6.5z"/><rect x="6" y="14" width="12" height="6" rx="1"/><line x1="6" y1="17" x2="18" y2="17"/></svg>',
+      house: '<svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/></svg>',
+      kitchen: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="7" cy="6" r="1"/><circle cx="12" cy="6" r="1"/><circle cx="17" cy="6" r="1"/><rect x="6" y="12" width="5" height="6" rx="0.5"/><rect x="13" y="12" width="5" height="3" rx="0.5"/></svg>',
+      fridge: '<svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="9" y1="5" x2="9" y2="8"/><line x1="9" y1="13" x2="9" y2="17"/></svg>',
+      wifi: '<svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>',
+      volleyball: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>',
+      tv: '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="18" x2="12" y2="21"/></svg>',
+      ac: '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="10" rx="2"/><path d="M6 18c0-2 2-4 6-4s6 2 6 4"/><line x1="6" y1="11" x2="18" y2="11"/></svg>'
+    };
+
+    let switchId = 0;
+
+    function switchProperty(key) {
+      if (selectTimeout) { clearTimeout(selectTimeout); selectTimeout = null; }
+      if (key === currentProperty) return;
+
+      // 1. Kill ALL running GSAP tweens & ScrollTriggers immediately
+      gsap.killTweensOf('*');
+      ScrollTrigger.getAll().forEach(st => st.kill());
+      animationsInitialized = false;
+
+      const thisSwitchId = ++switchId;
+      currentProperty = key;
+      const prop = properties[key];
+      const showInterior = prop.sections.includes('interior');
+
+      // 2. Scroll handled after DOM updates (see below)
+
+      // 3. Update hero
+      const heroImg = document.querySelector('#hero .hero-image-container img');
+      heroImg.src = prop.heroImage;
+      document.querySelector('.hero-title').innerHTML = prop.heroTitle;
+      document.querySelector('.hero-subtitle').textContent = prop.heroSubtitle;
+      document.querySelector('.hero-badge').textContent = prop.heroBadge;
+
+      // 4. Update piscina (or hide if no pool)
+      const piscinaSection = document.getElementById('piscina');
+      if (prop.piscina) {
+        piscinaSection.style.display = '';
+        document.querySelector('.piscina-text h2').innerHTML = prop.piscina.title;
+        document.querySelector('.piscina-text p').textContent = prop.piscina.text;
+        document.querySelector('.piscina-img-1 img').src = prop.piscina.img1;
+        document.querySelector('.piscina-img-1 img').alt = prop.piscina.alt1;
+        document.querySelector('.piscina-img-2 img').src = prop.piscina.img2;
+        document.querySelector('.piscina-img-2 img').alt = prop.piscina.alt2;
+      } else {
+        piscinaSection.style.display = 'none';
+      }
+
+      // 5. Update espacios
+      document.querySelector('.espacios-title').innerHTML = prop.espacios.title;
+      document.querySelector('.espacios-desc').textContent = prop.espacios.desc;
+      document.querySelector('.espacios-img-wrapper img').src = prop.espacios.image;
+      document.querySelector('.espacios-img-wrapper img').alt = prop.espacios.imageAlt;
+
+      const featuresContainer = document.querySelector('.espacios-features');
+      featuresContainer.innerHTML = prop.espacios.features.map(f => `
+        <div class="feature-item">
+          <div class="feature-icon">${featureIcons[f.icon]}</div>
+          <span class="feature-label">${f.label}</span>
+        </div>
+      `).join('');
+
+      const extraGallery = document.getElementById('espacios-gallery-extra');
+      extraGallery.style.display = prop.espacios.showGallery ? 'grid' : 'none';
+
+      // 6. Show/hide interior & dormitorios
+      const showDorm = prop.sections.includes('dormitorios');
+      document.getElementById('interior').style.display = showInterior ? '' : 'none';
+      document.getElementById('dormitorios').style.display = showDorm ? '' : 'none';
+
+      // Update interior content if property has custom data
+      if (showInterior && prop.interior) {
+        document.querySelector('.interior-text h2').innerHTML = prop.interior.title;
+        document.querySelector('.interior-text p').textContent = prop.interior.text;
+        const interiorImgs = document.querySelectorAll('.interior-img img');
+        prop.interior.images.forEach((src, i) => {
+          if (interiorImgs[i]) { interiorImgs[i].src = src; interiorImgs[i].alt = prop.interior.alts[i]; }
+        });
+        const interiorList = document.querySelector('.interior-list');
+        interiorList.innerHTML = prop.interior.list.map(item => `<li>${item}</li>`).join('');
+      }
+
+      // Update dormitorios content if property has custom data
+      if (showDorm && prop.dormitorios) {
+        document.querySelector('.dorm-header h2').innerHTML = prop.dormitorios.title;
+        document.querySelector('.dorm-header p').textContent = prop.dormitorios.desc;
+        const dormCards = document.querySelectorAll('.dorm-card');
+        prop.dormitorios.cards.forEach((card, i) => {
+          if (dormCards[i]) {
+            dormCards[i].querySelector('img').src = card.img;
+            dormCards[i].querySelector('img').alt = card.alt;
+            dormCards[i].querySelector('h3').textContent = card.title;
+            dormCards[i].querySelector('p').textContent = card.desc;
+          }
+        });
+      }
+
+      // 7. Update map
+      document.querySelector('.map-container iframe').src = prop.mapIframe;
+
+      // 8. Update ubicacion info
+      document.querySelector('.ubicacion-info').innerHTML = prop.ubicacionItems.map(item => `
+        <div class="ubicacion-item">
+          <span class="icon">${item.icon}</span>
+          <span>${item.text}</span>
+        </div>
+      `).join('');
+
+      // 9. Update reservar
+      document.querySelector('.reservar-title').innerHTML = prop.reservar.title;
+      document.querySelector('.reservar-desc').textContent = prop.reservar.desc;
+      document.querySelector('.reservar-details').innerHTML = prop.reservar.details.map(d => `
+        <div class="reservar-detail">
+          <span class="value">${d.value}</span>
+          <span class="label">${d.label}</span>
+        </div>
+      `).join('');
+
+      // 10. Update active badges
+      document.querySelectorAll('.property-tab').forEach(t => t.classList.toggle('active', t.dataset.property === key));
+      document.querySelectorAll('.casa-badge[data-property]').forEach(b => b.classList.toggle('active', b.dataset.property === key));
+
+      // 11. Update navbar links & progress dots
+      updateNavForProperty(key);
+
+      // 12. Reset ALL opacities for re-animation
+      const resetEls = [
+        '.hero-badge', '.hero-title', '.hero-subtitle', '.scroll-indicator',
+        '.piscina-text', '.piscina-img-1', '.piscina-img-2',
+        '.espacios-title', '.espacios-desc', '.espacios-img-wrapper',
+        '.ubicacion-text', '.map-container',
+        '.reservar-title', '.reservar-desc', '.reservar-details', '.cta-button', '.reservar-casas'
+      ];
+      resetEls.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (el) gsap.set(el, { opacity: 0, clearProps: 'transform' });
+      });
+      document.querySelectorAll('.feature-item').forEach(el => gsap.set(el, { opacity: 0 }));
+
+      if (showInterior) {
+        document.querySelectorAll('.interior-img').forEach(el => gsap.set(el, { opacity: 0, clearProps: 'clipPath' }));
+        gsap.set('.interior-text', { opacity: 0, clearProps: 'transform' });
+        gsap.set('.dorm-header', { opacity: 0, clearProps: 'transform' });
+        document.querySelectorAll('.dorm-card').forEach(el => gsap.set(el, { opacity: 0 }));
+        gsap.set('.interior-list li', { opacity: 0, x: -30 });
+      }
+
+      if (prop.espacios.showGallery) {
+        document.querySelectorAll('.espacios-gallery-extra .gallery-img').forEach(el => gsap.set(el, { opacity: 0 }));
+      }
+
+      // Reset hero image
+      gsap.set(heroImg, { opacity: 0, scale: 1.2 });
+
+      // 13. Force scroll to top, wait for image, then re-init
+      // Cancel any pending onload from previous switches
+      heroImg.onload = null;
+      heroImg.onerror = null;
+
+      function startAnimations() {
+        // Abort if another switch happened
+        if (thisSwitchId !== switchId) return;
+
+        // Force scroll to top right before animations
+        document.documentElement.style.cssText += 'scroll-behavior: auto !important;';
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        document.getElementById('hero').scrollIntoView();
+
+        setTimeout(() => {
+          if (thisSwitchId !== switchId) return;
+          document.documentElement.style.removeProperty('scroll-behavior');
+          initAnimations();
+          rebindLightbox();
+          ScrollTrigger.refresh();
+        }, 20);
+      }
+
+      if (heroImg.complete) {
+        startAnimations();
+      } else {
+        heroImg.onload = startAnimations;
+        heroImg.onerror = startAnimations;
+      }
+    }
+
+    function updateNavForProperty(key) {
+      const prop = properties[key];
+      const allNavItems = [
+        { id: 'hero', label: 'Inicio' },
+        { id: 'piscina', label: 'Piscina' },
+        { id: 'espacios', label: 'Espacios' },
+        { id: 'interior', label: 'Interior' },
+        { id: 'dormitorios', label: 'Dormitorios' },
+        { id: 'ubicacion', label: 'Ubicación' },
+        { id: 'reservar', label: 'Reservar' }
+      ];
+
+      const visibleSections = ['hero', ...prop.sections, 'reservar'];
+
+      // Rebuild nav links
+      const navLinksUl = document.getElementById('nav-links');
+      navLinksUl.innerHTML = visibleSections.map((sec, i) => {
+        const item = allNavItems.find(n => n.id === sec);
+        return `<li><a href="#${sec}" data-section="${i}">${item.label}</a></li>`;
+      }).join('');
+
+      // Re-bind nav link clicks
+      navLinksUl.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinksUl.classList.remove('open'));
+      });
+
+      // Rebuild progress dots
+      const dotsContainer = document.getElementById('progress-dots');
+      dotsContainer.innerHTML = visibleSections.map((sec, i) => {
+        const item = allNavItems.find(n => n.id === sec);
+        return `<div class="progress-dot${i === 0 ? ' active' : ''}" data-section="${i}" title="${item.label}"></div>`;
+      }).join('');
+
+      // Re-bind dot clicks
+      const newDots = dotsContainer.querySelectorAll('.progress-dot');
+      const visibleScenes = visibleSections.map(id => document.getElementById(id));
+      newDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.dataset.section);
+          visibleScenes[idx].scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+
+    function rebindLightbox() {
+      document.querySelectorAll('.piscina-img img, .espacios-img-wrapper img, .interior-img img, .dorm-card img, .espacios-gallery-extra .gallery-img img').forEach(img => {
+        // Remove old listeners by cloning
+        const newImg = img.cloneNode(true);
+        img.parentNode.replaceChild(newImg, img);
+        newImg.addEventListener('click', () => {
+          lightboxImg.src = newImg.src;
+          lightboxImg.alt = newImg.alt;
+          lightbox.classList.add('open');
+        });
+      });
+    }
+
+    // ==================== PROPERTY SELECTOR VISIBILITY ====================
+    const propertySelector = document.getElementById('property-selector');
+    window.addEventListener('scroll', () => {
+      propertySelector.classList.toggle('visible', window.scrollY > window.innerHeight * 0.7);
+    }, { passive: true });
+
+    // Click burst
+    document.addEventListener('click', e => {
+      if (particles.length > 200) return;
+      for (let i = 0; i < 14; i++) {
+        const p = new Particle(true);
+        const angle = (Math.PI * 2 / 14) * i + (Math.random() - 0.5) * 0.4;
+        const speed = 2 + Math.random() * 3.5;
+        p.x = e.clientX;
+        p.y = e.clientY;
+        p.size = Math.random() * 3 + 1.5;
+        p.speedX = Math.cos(angle) * speed;
+        p.speedY = Math.sin(angle) * speed;
+        p.opacity = 0.6 + Math.random() * 0.4;
+        p.life = 30 + Math.random() * 25;
+        p.maxLife = p.life;
+        particles.push(p);
+      }
+    });
+  </script>
+</body>
+</html>
